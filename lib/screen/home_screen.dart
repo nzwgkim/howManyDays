@@ -45,6 +45,9 @@ class TopPart extends StatefulWidget {
 
 class _TopPartState extends State<TopPart> {
   DateTime _dateTime = DateTime.now();
+  DateTime now = DateTime.now();
+  String isAfter = '+';
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -91,8 +94,13 @@ class _TopPartState extends State<TopPart> {
                             onDateTimeChanged: (value) {
                               setState(() {
                                 _dateTime = value;
+                                if (now.isAfter(_dateTime)) {
+                                  isAfter = '+';
+                                } else {
+                                  isAfter = '-';
+                                }
+                                print(now.difference(_dateTime).inDays);
                               });
-                              // print(_dateTime.day);
                             },
                           ),
                         ),
@@ -105,9 +113,9 @@ class _TopPartState extends State<TopPart> {
                   color: Colors.red,
                   size: 60,
                 )),
-            const Text(
-              'D+1',
-              style: TextStyle(
+            Text(
+              'D$isAfter${now.difference(_dateTime).inDays.abs()}',
+              style: const TextStyle(
                   color: Colors.white,
                   fontSize: 50,
                   fontFamily: 'sunflower',
