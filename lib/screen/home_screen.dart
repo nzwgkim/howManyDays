@@ -34,11 +34,17 @@ class BottomPart extends StatelessWidget {
   }
 }
 
-class TopPart extends StatelessWidget {
+class TopPart extends StatefulWidget {
   const TopPart({
     super.key,
   });
 
+  @override
+  State<TopPart> createState() => _TopPartState();
+}
+
+class _TopPartState extends State<TopPart> {
+  DateTime _dateTime = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -46,6 +52,7 @@ class TopPart extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
               'U & I',
@@ -53,8 +60,9 @@ class TopPart extends StatelessWidget {
                   fontSize: 80, fontFamily: 'parisienne', color: Colors.white),
             ),
             Column(
-              children: const [
-                Text(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(
                   '우리 처음 만난 날',
                   style: TextStyle(
                       fontFamily: 'sunflower',
@@ -62,8 +70,8 @@ class TopPart extends StatelessWidget {
                       color: Colors.white),
                 ),
                 Text(
-                  '2021.10.21',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  "${_dateTime.day}.${_dateTime.month}.${_dateTime.year}",
+                  style: const TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ],
             ),
@@ -81,7 +89,10 @@ class TopPart extends StatelessWidget {
                           child: CupertinoDatePicker(
                             mode: CupertinoDatePickerMode.date,
                             onDateTimeChanged: (value) {
-                              print(value);
+                              setState(() {
+                                _dateTime = value;
+                              });
+                              // print(_dateTime.day);
                             },
                           ),
                         ),
