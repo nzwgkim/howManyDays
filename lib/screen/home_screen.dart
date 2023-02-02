@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -66,11 +67,33 @@ class TopPart extends StatelessWidget {
                 ),
               ],
             ),
-            const Icon(
-              Icons.favorite,
-              color: Colors.red,
-              size: 50,
-            ),
+            IconButton(
+                onPressed: () {
+                  showCupertinoDialog(
+                    barrierDismissible: true,
+                    context: context,
+                    builder: (context) {
+                      return Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          color: Colors.yellow,
+                          height: 300,
+                          child: CupertinoDatePicker(
+                            mode: CupertinoDatePickerMode.date,
+                            onDateTimeChanged: (value) {
+                              print(value);
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+                icon: const Icon(
+                  Icons.favorite,
+                  color: Colors.red,
+                  size: 60,
+                )),
             const Text(
               'D+1',
               style: TextStyle(
