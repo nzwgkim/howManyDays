@@ -50,6 +50,9 @@ class _TopPartState extends State<TopPart> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+
     return Expanded(
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -57,24 +60,20 @@ class _TopPartState extends State<TopPart> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               'U & I',
-              style: TextStyle(
-                  fontSize: 80, fontFamily: 'parisienne', color: Colors.white),
+              style: textTheme.displayLarge,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   '우리 처음 만난 날',
-                  style: TextStyle(
-                      fontFamily: 'sunflower',
-                      fontSize: 30,
-                      color: Colors.white),
+                  style: textTheme.displayMedium,
                 ),
                 Text(
                   "${_dateTime.day}.${_dateTime.month}.${_dateTime.year}",
-                  style: const TextStyle(color: Colors.white, fontSize: 20),
+                  style: textTheme.displaySmall,
                 ),
               ],
             ),
@@ -115,11 +114,7 @@ class _TopPartState extends State<TopPart> {
                 )),
             Text(
               'D$isAfter${now.difference(_dateTime).inDays.abs()}',
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 50,
-                  fontFamily: 'sunflower',
-                  fontWeight: FontWeight.w700),
+              style: textTheme.headlineMedium,
             )
           ],
         ),

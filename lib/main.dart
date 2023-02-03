@@ -12,9 +12,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      theme: applyThemeData(),
+      home: const HomeScreen(),
+    );
+  }
+
+  ThemeData applyThemeData() {
+    return ThemeData(
+      fontFamily: 'sunflower',
+      textTheme: const TextTheme(
+        displayLarge: TextStyle(
+            fontSize: 80, fontFamily: 'parisienne', color: Colors.white),
+        displayMedium: TextStyle(fontSize: 30, color: Colors.white),
+        displaySmall: TextStyle(color: Colors.white, fontSize: 20),
+        headlineMedium: TextStyle(
+            color: Colors.white, fontSize: 50, fontWeight: FontWeight.w700),
+      ),
     );
   }
 }
